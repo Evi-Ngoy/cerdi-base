@@ -47,7 +47,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const stats: Stat[] = [
-  { value: "+20", label: "ans d'expérience" },
+  { value: "+10", label: "ans d'expérience" },
   { value: "4", label: "métiers complémentaires" },
   { value: "RDC", label: "rayon d'action national" },
   { value: "2012", label: "personnalité juridique" },
