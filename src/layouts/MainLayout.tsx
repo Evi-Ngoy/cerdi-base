@@ -3,7 +3,7 @@ import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { BackToTop } from "../components/common/BackToTop";
 import { Button } from "../components/common/Button";
-import { navItems } from "../data/site";
+import { navItems, organization } from "../data/site";
 import { useDarkMode } from "../hooks/useDarkMode";
 import { cn } from "../utils/cn";
 
@@ -16,9 +16,9 @@ export function MainLayout() {
       <header className="glass fixed inset-x-0 top-0 z-40 border-b border-black/5 dark:border-white/10">
         <div className="container-page flex h-20 items-center justify-between gap-5">
           <NavLink to="/" className="focus-ring flex items-center gap-3 rounded-md" onClick={() => setOpen(false)}>
-            <span className="grid size-12 place-items-center rounded-md bg-[#2E7D32] text-lg font-black text-white">CB</span>
+            <LogoMark />
             <span className="min-w-0 whitespace-nowrap leading-tight">
-              <span className="block text-lg font-black">CERDI-BAS</span>
+              <span className="block text-lg font-black">{organization.shortName}</span>
               <span className="hidden text-xs font-semibold text-gray-500 dark:text-gray-300 sm:block">Développement durable</span>
             </span>
           </NavLink>
@@ -90,11 +90,11 @@ function Footer() {
       <div className="container-page grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <div className="mb-5 flex items-center gap-3">
-            <span className="grid size-12 place-items-center rounded-md bg-[#2E7D32] text-lg font-black">CB</span>
-            <span className="text-xl font-black">CERDI-BAS</span>
+            <LogoMark />
+            <span className="text-xl font-black">{organization.shortName}</span>
           </div>
           <p className="max-w-md leading-8 text-white/70">
-            ASBL congolaise engagée pour le développement durable, le renforcement des capacités et l'accompagnement des initiatives de base depuis 2002.
+            {organization.legalStatus} engagée pour le développement durable, le renforcement des capacités et l'accompagnement des initiatives de base depuis {organization.createdAt}.
           </p>
         </div>
         <div>
@@ -108,9 +108,13 @@ function Footer() {
         <div>
           <h3 className="mb-4 font-black">Coordonnées</h3>
           <div className="grid gap-3 text-white/70">
-            <span>Kinshasa, République Démocratique du Congo</span>
-            <a href="tel:+243000000000" className="hover:text-white">+243 000 000 000</a>
-            <a href="mailto:contact@cerdi-bas.org" className="hover:text-white">contact@cerdi-bas.org</a>
+            <span>{organization.address}</span>
+            {organization.phones.map((phone) => (
+              <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-white">{phone}</a>
+            ))}
+            {organization.emails.map((email) => (
+              <a key={email} href={`mailto:${email}`} className="hover:text-white">{email}</a>
+            ))}
           </div>
         </div>
         <div>
@@ -123,8 +127,16 @@ function Footer() {
         </div>
       </div>
       <div className="container-page mt-12 border-t border-white/10 pt-8 text-sm text-white/50">
-        © {new Date().getFullYear()} CERDI-BAS. Tous droits réservés.
+        © {new Date().getFullYear()} {organization.shortName}. Tous droits réservés.
       </div>
     </footer>
+  );
+}
+
+function LogoMark() {
+  return (
+    <span className="grid size-14 shrink-0 place-items-center overflow-hidden rounded-md border border-black/5 bg-white p-1 shadow-sm sm:size-16">
+      <img src="/logo-mark.png" alt="Logo CERDI-BAS" className="h-full w-full object-contain" />
+    </span>
   );
 }

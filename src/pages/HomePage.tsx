@@ -7,7 +7,7 @@ import { CallToAction } from "../components/sections/CallToAction";
 import { Hero } from "../components/sections/Hero";
 import { InterventionGrid } from "../components/sections/InterventionGrid";
 import { PartnersStrip } from "../components/sections/PartnersStrip";
-import { galleryItems, news, projects, values } from "../data/site";
+import { coreTrades, galleryItems, news, objectives, organization, projects, values } from "../data/site";
 
 export function HomePage() {
   return (
@@ -17,8 +17,8 @@ export function HomePage() {
       <section className="section-pad bg-[#F7FAF8] dark:bg-[#07100C]">
         <div className="container-page grid gap-10 lg:grid-cols-3">
           {[
-            { icon: Target, title: "Mission", text: "Contribuer au développement socio-économique des communautés par des initiatives durables, participatives et inclusives." },
-            { icon: Eye, title: "Vision", text: "Des communautés autonomes, résilientes et capables de porter leur propre transformation." },
+            { icon: Target, title: "Mission", text: organization.mission },
+            { icon: Eye, title: "Objectif", text: "Promouvoir la bonne gouvernance, le développement durable, l'auto-emploi, l'emploi jeune et des services de proximité en RDC et en Afrique." },
             { icon: Handshake, title: "Valeurs", text: values.slice(0, 4).join(" · ") },
           ].map((item, index) => {
             const Icon = item.icon;
@@ -34,7 +34,48 @@ export function HomePage() {
           })}
         </div>
       </section>
+      <section className="section-pad bg-white dark:bg-[#091711]">
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="Métiers"
+            title="Quatre métiers complémentaires"
+            description="CERDI-BAS intervient depuis le diagnostic jusqu'à la mise en œuvre, au suivi, à l'évaluation et au renforcement durable des capacités."
+          />
+          <div className="grid gap-6 lg:grid-cols-4">
+            {coreTrades.map((trade, index) => {
+              const Icon = trade.icon;
+              return (
+                <Reveal key={trade.title} delay={index * 0.06}>
+                  <article className="h-full rounded-md border border-gray-200 bg-[#F7FAF8] p-6 dark:border-white/10 dark:bg-white/5">
+                    <Icon className="mb-5 text-[#1565C0]" size={32} />
+                    <h3 className="text-xl font-black">{trade.title}</h3>
+                    <p className="mt-3 leading-7 text-gray-600 dark:text-gray-300">{trade.description}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
       <InterventionGrid limit={6} />
+      <section className="section-pad bg-[#F7FAF8] dark:bg-[#07100C]">
+        <div className="container-page grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+          <SectionHeader
+            align="left"
+            eyebrow="Objectifs"
+            title="Une action orientée vers la gouvernance et l'autopromotion"
+            description="Les objectifs officiels de CERDI-BAS mettent l'accent sur la participation, la citoyenneté responsable, l'inclusion et le renforcement institutionnel."
+          />
+          <div className="grid gap-4">
+            {objectives.map((objective) => (
+              <div key={objective} className="flex gap-3 rounded-md border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-white/5">
+                <CheckCircle2 className="mt-1 shrink-0 text-[#2E7D32]" />
+                <span className="leading-7 text-gray-700 dark:text-gray-200">{objective}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="section-pad bg-[#F7FAF8] dark:bg-[#07100C]">
         <div className="container-page">
           <SectionHeader eyebrow="Réalisations" title="Des actions concrètes et suivies" />

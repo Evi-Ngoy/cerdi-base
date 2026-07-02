@@ -6,6 +6,7 @@ import type { ZodError } from "zod";
 import { Button } from "../components/common/Button";
 import { SectionHeader } from "../components/common/SectionHeader";
 import { Seo } from "../components/common/Seo";
+import { organization } from "../data/site";
 import { contactSchema, type ContactFormData } from "../lib/contactSchema";
 import { PageHero } from "./AboutPage";
 
@@ -33,16 +34,16 @@ export function ContactPage() {
       <section className="section-pad bg-[#F7FAF8] dark:bg-[#07100C]">
         <div className="container-page grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <SectionHeader align="left" title="Coordonnées" description="Notre équipe vous répondra dans les meilleurs délais." />
+            <SectionHeader align="left" title="Coordonnées" description="La Direction exécutive de CERDI-BAS est basée à Limete, Kinshasa." />
             <div className="grid gap-4">
-              <Info icon={<MapPin />} title="Adresse" text="Kinshasa, République Démocratique du Congo" />
-              <Info icon={<Phone />} title="Téléphone" text="+243 000 000 000" />
-              <Info icon={<Mail />} title="Email" text="contact@cerdi-bas.org" />
+              <Info icon={<MapPin />} title="Adresse" text={organization.address} />
+              <Info icon={<Phone />} title="Téléphone" text={organization.phones.join(" / ")} />
+              <Info icon={<Mail />} title="Email" text={organization.emails.join(" / ")} />
             </div>
             <div className="mt-6 overflow-hidden rounded-md border border-gray-200 dark:border-white/10">
               <iframe
                 title="Carte Kinshasa"
-                src="https://www.google.com/maps?q=Kinshasa%20RDC&output=embed"
+                src="https://www.google.com/maps?q=15%C3%A8%20rue%20quartier%20industriel%20Limete%20Kinshasa%20RDC&output=embed"
                 className="h-72 w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
