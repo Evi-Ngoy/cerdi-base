@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  font-family: "Inter", system-ui, sans-serif;
+  --green: #2e7d32;
+  --blue: #1565c0;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f7faf8;
+  color: #122018;
+}
+
+button,
+a,
+input,
+textarea {
+  outline-color: #1565c0;
+}
+
+.container-page {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+}
+
+.dark .glass {
+  background: rgba(7, 15, 12, 0.78);
+}
+
+.section-pad {
+  padding-block: clamp(64px, 8vw, 112px);
+}
+
+.focus-ring {
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1565C0];
+}
+
+.field {
+  @apply w-full rounded-md border border-gray-200 bg-white px-4 py-3 font-semibold text-gray-950 transition focus:border-[#1565C0] dark:border-white/10 dark:bg-white/10 dark:text-white;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
